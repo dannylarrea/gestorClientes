@@ -50,5 +50,5 @@ Route::post('/clientes',[ClienteController::class,'store'])->name('clientes.stor
 
 /* Rutas customizadas *******************************************/
 /* Display the specified resources. */
-Route::post('/clientes',[ClienteController::class,'shows'])->name('clientes.shows');
+Route::post('/clientes/shows',[ClienteController::class,'shows'])->name('clientes.shows');
 

@@ -27,7 +27,7 @@
                 <form action="{{route('clientes.create')}}" method="post">
                     @csrf
                     {{method_field('GET')}}
-                    <button type="input" class="btn btn-primary">Nuevo cliente</button>
+                    <input type="submit" class="btn btn-primary" value="Nuevo cliente">
                 </form>
             </div>
             <div class="col"></div>
