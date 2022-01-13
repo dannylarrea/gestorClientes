@@ -48,3 +48,7 @@ Route::get('/clientes/create',[ClienteController::class,'create'])->name('client
 /* Store a newly created resource in storage. */
 Route::post('/clientes',[ClienteController::class,'store'])->name('clientes.store');
 
+/* Rutas customizadas *******************************************/
+/* Display the specified resources. */
+Route::post('/clientes',[ClienteController::class,'shows'])->name('clientes.shows');
+

@@ -89,4 +89,18 @@ class ClienteController extends Controller
         DB::delete('delete from clientes where id=?',[$cliente->id]);
         return redirect()->route('clientes.index');
     }
+
+    /* Funciones customizadas *******************************************/
+
+    /**
+     * Display the specified resources.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+    ********************************************************************/
+    public function shows(Request $request)
+    {
+        $clientes=DB::select('select * from clientes where nombre like ?',['%'.$request->input('nombre').'%']);
+        return view('clientes.index', compact('clientes'));
+    }
 }

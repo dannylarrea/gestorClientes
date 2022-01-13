@@ -9,15 +9,29 @@
 </head>
 <body>
     <h1 class="p-4">App gestor de clientes</h1>
-    
-    <div class="p-5">
-        {{-- Route::get('/clientes/create',[ClienteController::class,'create'])->name('clientes.create'); --}}
-        <form action="{{route('clientes.create')}}" method="post">
-            @csrf
-            {{method_field('GET')}}
-            <button type="input" class="btn btn-primary">Nuevo cliente</button>
-        </form>
-        
+
+    <div class="p-5"> 
+        <div class="row pb-3">
+            <div class="col">
+                {{-- Buscador (filtro) --}}
+                <form action="{{route('clientes.shows')}}" method="post">
+                    @csrf
+                    {{method_field('POST')}}
+                    <div class="form-outline">
+                        <input type="search" id="" name="nombre" class="form-control" placeholder="Buscar por nombre..." aria-label="Search" />
+                    </div>
+                </form>
+            </div>
+            <div class="col">
+                {{-- Route::get('/clientes/create',[ClienteController::class,'create'])->name('clientes.create'); --}}
+                <form action="{{route('clientes.create')}}" method="post">
+                    @csrf
+                    {{method_field('GET')}}
+                    <button type="input" class="btn btn-primary">Nuevo cliente</button>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>       
         <table class="table">
             <tr>
                 <th scope="col">#</th>
