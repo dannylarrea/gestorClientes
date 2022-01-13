@@ -1,6 +1,4 @@
-**Solución**
-
-Pasos para la descarga y prueba de la aplicación:
+**Pasos para la descarga y prueba de la aplicación:**
 
 1. clonar el repositorio (menos la persona quien creo el repo)
 
