@@ -16,10 +16,10 @@
         <div class="row pb-3">
             <div class="col">
                 {{-- Buscador (filtro) --}}
-                <form action="{{route('clientes.shows')}}" method="post">
-                    <input type="hidden" name="_method" value="POST">
+                <form method="post">
+                    <input type="hidden" name="_method" value="POST" id="postFiltro">
                     <div class="form-outline">
-                        <input type="search" id="" name="nombre" class="form-control" placeholder="Buscar por nombre..." aria-label="Search" onkeyup="filtro(); return false;"/>
+                        <input type="search" id="search" name="nombre" class="form-control" placeholder="Buscar por nombre..." aria-label="Search" onkeyup="filtro(); return false;"/>
                     </div>
                 </form>
             </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="col"></div>
         </div>       
-        <table class="table">
+        <table class="table" id="table">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
@@ -57,7 +57,7 @@
                 </td>
                 <td>
                     {{-- Route::delete('/clientes/{cliente}',[ClienteController::class,'destroy'])->name('clientes.destroy'); --}}
-                    <form action="{{route('clientes.destroy',['cliente'=>$cliente->id])}}" method="post">
+                    <form method="post">
                         <input type="hidden" name="_method" value="DELETE" id="deleteCliente">
                         <button class= "btn btn-danger" type="submit" value="Delete">Eliminar</button>
                     </form>
