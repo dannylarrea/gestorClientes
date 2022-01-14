@@ -161,8 +161,7 @@ La idea es agregar AJAX a las funciones o métodos que generan un cambio (o reca
             }
          }
          /*
-         send()	   -> Sends the request to the server (used for GET)
-         send(string)->	Sends the request to the server (used for POST)
+         send(string)->Sends the request to the server (used for POST)
          */
          ajax.send(formData)
       }
@@ -234,8 +233,7 @@ La idea es agregar AJAX a las funciones o métodos que generan un cambio (o reca
             }
          }
          /*
-         send()	   -> Sends the request to the server (used for GET)
-         send(string)->	Sends the request to the server (used for POST)
+         send(string)->Sends the request to the server (used for POST)
          */
          ajax.send(formData)
       }
