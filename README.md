@@ -75,33 +75,33 @@ La idea es agregar AJAX a las funciones o métodos que generan un cambio (o reca
 
      - ~{{method_field('DELETE')}}~ -> `<input type="hidden" name="_method" value="DELETE">`
 
-   ```php
-   {{-- Buscador (filtro) --}}
-   <form method="post">
-      <input type="hidden" name="_method" value="POST" id="postFiltro">
-      <div class="form-outline">
-         <input type="search" id="" name="nombre" class="form-control" placeholder="Buscar por nombre..." aria-label="Search" />
-      </div>
-   </form>
+      ```php
+      {{-- Buscador (filtro) --}}
+      <form method="post">
+         <input type="hidden" name="_method" value="POST" id="postFiltro">
+         <div class="form-outline">
+            <input type="search" id="" name="nombre" class="form-control" placeholder="Buscar por nombre..." aria-label="Search" />
+         </div>
+      </form>
 
-   /*......*/
+      /*......*/
 
-   {{-- Eliminar cliente --}}
-   <form method="post">
-      <input type="hidden" name="_method" value="DELETE" id="deleteCliente">
-      <button class= "btn btn-danger" type="submit" value="Delete">Eliminar</button>
-   </form>
-   ```
+      {{-- Eliminar cliente --}}
+      <form method="post">
+         <input type="hidden" name="_method" value="DELETE" id="deleteCliente">
+         <button class= "btn btn-danger" type="submit" value="Delete">Eliminar</button>
+      </form>
+      ```
 
-   - si el formulario NO utiliza AJAX
-   ```PHP
-   {{-- Editar cliente --}}
-   <form action="{{route('clientes.edit',['cliente'=>$cliente->id])}}" method="post">
-      @csrf
-      <input type="hidden" name="_method" value="GET">
-      <button class= "btn btn-secondary" type="submit" value="Edit">Editar</button>
-   </form>
-   ```
+      - si el formulario NO utiliza AJAX
+         ```PHP
+         {{-- Editar cliente --}}
+         <form action="{{route('clientes.edit',['cliente'=>$cliente->id])}}" method="post">
+            @csrf
+            <input type="hidden" name="_method" value="GET">
+            <button class= "btn btn-secondary" type="submit" value="Edit">Editar</button>
+         </form>
+         ```
 
 6. Filtro implementado con AJAX
 
@@ -121,7 +121,7 @@ La idea es agregar AJAX a las funciones o métodos que generan un cambio (o reca
 
    **index.blade.php**
 
-   - asociamos un evento y una función js al input/button, por ejemplo `onkeyup="filtro(); return false"`
+   - asociamos un evento y una función js al input/button, por ejemplo `onkeyup="filtro(); return false;"`
 
    **pubic/js/ajax.js**
 
@@ -156,8 +156,8 @@ La idea es agregar AJAX a las funciones o métodos que generan un cambio (o reca
                var respuesta = JSON.parse(this.responseText);
                /* Crear la estructura html que se devolverá dentro de una variable recarga*/
                var recarga = '';
-                  /* creación de estructura */
-               /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                  /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                  /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
             }
          }
          /*
@@ -190,7 +190,7 @@ La idea es agregar AJAX a las funciones o métodos que generan un cambio (o reca
 
    **index.blade.php**
 
-   - asociamos un evento y una función js al input/button, por ejemplo `onclick="eliminar()"`
+   - asociamos un evento y una función js al input/button, por ejemplo `onclick="eliminar(id); return false;"`
 
    **pubic/js/ajax.js**
 
@@ -222,14 +222,15 @@ La idea es agregar AJAX a las funciones o métodos que generan un cambio (o reca
          ajax.open("POST", "clientes/"+cliente_id, true);
          ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
-                var respuesta = JSON.parse(this.responseText);
-                if (respuesta.resultado == "OK") {
-                    divMensaje.innerHTML = "Cliente #" + client_id + " eliminado correctamente"
-                } else {
-                    console.log(respuesta);
-                    divMensaje.innerHTML = respuesta.resultado + "Ha habido un problema al eliminar el registro, inténtalo de nuevo más tarde."
-                }
-                filtro();
+                  var respuesta = JSON.parse(this.responseText);
+                  if (respuesta.resultado == "OK") {
+                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                  } else {
+                     /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
+                     /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
+                  }
+                  filtro();
             }
          }
          /*
