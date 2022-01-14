@@ -93,15 +93,15 @@ La idea es agregar AJAX a las funciones o métodos que generan un cambio (o reca
       </form>
       ```
 
-      - si el formulario NO utiliza AJAX
-         ```PHP
-         {{-- Editar cliente --}}
-         <form action="{{route('clientes.edit',['cliente'=>$cliente->id])}}" method="post">
-            @csrf
-            <input type="hidden" name="_method" value="GET">
-            <button class= "btn btn-secondary" type="submit" value="Edit">Editar</button>
-         </form>
-         ```
+   - si el formulario NO utiliza AJAX
+      ```PHP
+      {{-- Editar cliente --}}
+      <form action="{{route('clientes.edit',['cliente'=>$cliente->id])}}" method="post">
+         @csrf
+         <input type="hidden" name="_method" value="GET">
+         <button class= "btn btn-secondary" type="submit" value="Edit">Editar</button>
+      </form>
+      ```
 
 6. Filtro implementado con AJAX
 
