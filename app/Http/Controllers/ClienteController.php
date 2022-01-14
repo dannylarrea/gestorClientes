@@ -100,7 +100,9 @@ class ClienteController extends Controller
     ********************************************************************/
     public function shows(Request $request)
     {
-        $clientes=DB::select('select * from clientes where nombre like ?',['%'.$request->input('nombre').'%']);
-        return view('clientes.index', compact('clientes'));
+       $clientes=DB::select('select * from clientes where nombre like ?',['%'.$request->input('nombre').'%']);
+       // return view('clientes.index', compact('clientes'));
+    
+       return response()->json($clientes);
     }
 }
