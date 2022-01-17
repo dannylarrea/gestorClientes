@@ -61,7 +61,9 @@ La idea es agregar AJAX a las funciones o métodos que generan un cambio (o reca
 
    Transcribimos todos los formuluarios para que se adapten a AJAX. Esto lo hacemos ya que javascript no compila código php ni código blade (https://laravel.com/docs/master/routing#form-method-spoofing)
 
-   - ~@csrf~ -> token (ver apartado 3.)
+   - ~@csrf~ -> meta de token - si el formulario utiliza AJAX (ver apartado 3.)
+   
+   - ~@csrf~ -> `<input type="hidden" name="_token" value="{{ csrf_token() }}" />` - si el formulario NO utiliza AJAX
    
    - ~{{method_field('GET')}}~ -> `<input type="hidden" name="_method" value="GET">`
 
@@ -97,7 +99,7 @@ La idea es agregar AJAX a las funciones o métodos que generan un cambio (o reca
       ```PHP
       {{-- Editar cliente --}}
       <form action="{{route('clientes.edit',['cliente'=>$cliente->id])}}" method="post">
-         @csrf
+         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
          <input type="hidden" name="_method" value="GET">
          <button class= "btn btn-secondary" type="submit" value="Edit">Editar</button>
       </form>
