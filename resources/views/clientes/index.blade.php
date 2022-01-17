@@ -26,6 +26,7 @@
             <div class="col">
                 {{-- Route::get('/clientes/create',[ClienteController::class,'create'])->name('clientes.create'); --}}
                 <form action="{{route('clientes.create')}}" method="post">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <input type="hidden" name="_method" value="GET">
                     <input type="submit" class="btn btn-primary" value="Nuevo cliente">
                 </form>
@@ -51,6 +52,7 @@
                 <td>
                     {{-- Route::get('/clientes/{cliente}/edit',[ClienteController::class,'edit'])->name('clientes.edit'); --}}
                     <form action="{{route('clientes.edit',['cliente'=>$cliente->id])}}" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <input type="hidden" name="_method" value="GET">
                         <button class= "btn btn-secondary" type="submit" value="Edit">Editar</button>
                     </form>

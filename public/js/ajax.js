@@ -46,15 +46,46 @@ function filtro() {
     POST -> Sí envía parámetros
     true -> asynchronous
     */
-    ajax.open("POST", "/clientes/shows", true);
+    ajax.open("POST", "clientes/shows", true);
     ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var respuesta = JSON.parse(this.responseText);
                 /* Crear la estructura html que se devolverá dentro de una variable recarga*/
-                var recarga = '<tr>bb</tr>';
+                var recarga = '';
 
+                recarga += '<tr>';
+                recarga += '<th scope="col">#</th>';
+                recarga += '<th scope="col">Nombre</th>';
+                recarga += '<th scope="col">Ocupación</th>';
+                recarga += '<th scope="col">Teléfono</th>';
+                recarga += '<th scope="col">Sitio Web</th>';
+                recarga += '<th scope="col" colspan="2">Acciones</th>';
+                recarga += '</tr>';
+                for (let i = 0; i < respuesta.length; i++) {
+                    recarga += '<tr>';
+                    recarga += '<td scope="row">' + respuesta[i].id + '</td>';
+                    recarga += '<td>' + respuesta[i].nombre + '</td>';
+                    recarga += '<td>' + respuesta[i].ocupacion + '</td>';
+                    recarga += '<td>' + respuesta[i].telefono + '</td>'
+                    recarga += '<td>' + respuesta[i].website + '</td>';
+                    recarga += '<td>';
+                    // editar
+                    recarga += '<form action="./clientes/' + respuesta[i].id + '/edit" method="post">';
+                    recarga += '<input type="hidden" name="_method" value="GET">';
+                    recarga += '<button class= "btn btn-secondary" type="submit" value="Edit">Editar</button>';
+                    recarga += '</form>';
+                    recarga += '</td>';
+                    recarga += '<td>';
+                    // eliminar
+                    recarga += '<form method="post">';
+                    recarga += '<input type="hidden" name="_method" value="DELETE" id="deleteCliente">';
+                    recarga += '<button class= "btn btn-danger" type="submit" value="Delete">Eliminar</button>';
+                    recarga += '</form>';
+                    recarga += '</td>';
+                    recarga += '</tr>';
+                }
 
-
+                table.innerHTML = recarga;
                 /* creación de estructura: la estructura que creamos no ha de contener código php ni código blade*/
                 /* utilizamos innerHTML para introduciremos la recarga en el elemento html pertinente */
             }
@@ -62,5 +93,5 @@ function filtro() {
         /*
         send(string)->Sends the request to the server (used for POST)
         */
-    ajax.send(formData)
+    ajax.send(formData);
 }
