@@ -63,7 +63,7 @@ La idea es agregar AJAX a las funciones o métodos que generan un cambio (o reca
 
    - ~@csrf~ -> meta de token - si el formulario utiliza AJAX (ver apartado 3.)
    
-   - ~@csrf~ -> `<input type="hidden" name="_token" value="{{ csrf_token() }}" />` - si el formulario NO utiliza AJAX (ver apartado 3.)
+   - ~@csrf~ -> `<input type="hidden" name="_token" value="{{ csrf_token() }}" />` - si el formulario NO utiliza AJAX
    
    - ~{{method_field('GET')}}~ -> `<input type="hidden" name="_method" value="GET">`
 
