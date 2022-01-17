@@ -32,7 +32,8 @@
                 </form>
             </div>
             <div class="col"></div>
-        </div>       
+        </div>
+        <div id="message"></div>
         <table class="table" id="table">
             <tr>
                 <th scope="col">#</th>
@@ -61,7 +62,7 @@
                     {{-- Route::delete('/clientes/{cliente}',[ClienteController::class,'destroy'])->name('clientes.destroy'); --}}
                     <form method="post">
                         <input type="hidden" name="_method" value="DELETE" id="deleteCliente">
-                        <button class= "btn btn-danger" type="submit" value="Delete">Eliminar</button>
+                        <button class= "btn btn-danger" type="submit" value="Delete" onclick="eliminar({{$cliente->id}}); return false;">Eliminar</button>
                     </form>
                 </td>
             </tr>
